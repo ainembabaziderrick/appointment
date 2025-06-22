@@ -45,6 +45,14 @@
     </a>
   </li><!-- End Dashboard Nav -->
 
+      <li class="nav-item">
+    <a class="nav-link @if(Request::segment(2)=='hospitals') @else collapsed @endif " href="{{ url('admin/hospital')}}">
+      <i class="bi bi-people-fill"></i>
+      <span>Hospitals </span>
+    </a>
+  </li><!-- End Hospital Nav -->
+
+
         <li class="nav-item">
     <a class="nav-link @if(Request::segment(2)=='appointments') @else collapsed @endif " href="{{ url('admin/appointments')}}">
       <i class="bi bi-people-fill"></i>

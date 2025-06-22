@@ -12,6 +12,7 @@ use App\Http\Controllers\PsychiatryController;
 use App\Http\Controllers\CardiologyController;
 use App\Http\Controllers\GynaecologyController;
 use App\Http\Controllers\RadiologyController;
+use App\Http\Controllers\HospitalController;    
 
 
 /*
@@ -89,6 +90,14 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/admin/cardiology/update/{id}', [CardiologyController::class, 'Updatecardiology']);
     Route::get('/admin/cardiology/delete/{id}', [CardiologyController::class, 'Deletecardiology']);
 
+    // Hospital
+    Route::get('admin/hospital', [HospitalController::class, 'hospital']);
+    Route::get('admin/hospital/add', [HospitalController::class, 'add_hospital']);
+    Route::post('admin/hospital/add', [HospitalController::class, 'insert_add_hospital']);
+    Route::get('/admin/hospital/edit/{id}', [HospitalController::class, 'Edithospital']);
+    Route::post('/admin/hospital/update/{id}', [HospitalController::class, 'Updatehospital']);
+    Route::get('/admin/hospital/delete/{id}', [HospitalController::class, 'Deletehospital']);
+    
     // Gynaecology
     Route::get('admin/gynaecology', [GynaecologyController::class, 'gynaecology']);
     Route::get('admin/gynaecology/add', [GynaecologyController::class, 'add_gynaecology']);
