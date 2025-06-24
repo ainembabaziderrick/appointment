@@ -28,7 +28,10 @@ use App\Http\Controllers\HospitalController;
 
 Route::get('/', function () {
     return view('frontend.file');
-});
+})->name('home');
+Route::get('/frontend/locate', function () {
+    return view('frontend.locate');
+})->name('locate');
 
 
 Route::get('/register', [AuthController::class, 'Register'])->name('register');

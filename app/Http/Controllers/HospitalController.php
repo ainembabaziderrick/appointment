@@ -21,6 +21,15 @@ class HospitalController extends Controller
 
     public function insert_add_hospital(Request $request)
     {
+
+        $case_image = $request->file('image');
+        $name_gen = hexdec(uniqid());
+        $img_ext = strtolower($case_image->getClientOriginalExtension());
+        $img_name = $name_gen.'.'.$img_ext;
+        $up_location = 'image/locate/';
+        $last_img = $up_location.$img_name;
+        $case_image -> move($up_location, $img_name);
+
         $save = new Hospital;
         $save->name = $request->name;
         $save->contact = $request->contact;
@@ -30,6 +39,8 @@ class HospitalController extends Controller
         $save->services = $request->services;
         $save->working_hours = $request->working_hours;
         $save->working_days = $request->working_days;
+        $save->image = $last_img;
+        $save->description = $request->description;
         $save->save();
 
         return redirect('admin/hospital')->with('success', 'Hospital successfully created');
@@ -51,6 +62,12 @@ class HospitalController extends Controller
             'contact' => $request->contact,
             'email' => $request->email,
             'address' => $request->address,
+            'location' => $request->location,
+            'services' => $request->services,
+            'working_hours' => $request->working_hours,
+            'working_days' => $request->working_days,
+            'description' => $request->description,
+            'image' => $request->hasFile('image') ? $request->file('image')->store('image/locate', 'public') : Hospital::find($id)->image
         ]);
         return redirect('admin/hospital')->with('success', 'Hospital Updated succcessfully');
 

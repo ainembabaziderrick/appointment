@@ -14,7 +14,7 @@ class UserController extends Controller
     }
 
     public function add_user(Request $request){
-        return view('admin.users.add');
+        return view('backend.admin.users.add');
     }
 
     public function insert_add_user(Request $request){
